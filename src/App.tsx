@@ -1,6 +1,8 @@
 import MenuItem from "./components/MenuItem";
 import { menuItems } from "./data/db";
+import { useOrder } from "./hooks/useOrder";
 export const App = () => {
+  const { addItem } = useOrder();
   return (
     <>
       <header className=" bg-teal-400 py-5">
@@ -13,7 +15,7 @@ export const App = () => {
           <h2 className="text-4xl font-black">Menu</h2>
           <div className="space-y-3 mt-10">
             {menuItems.map((item) => (
-              <MenuItem key={item.id} item={item} />
+              <MenuItem key={item.id} item={item} addItem={addItem}/>
             ))}
           </div>
         </div>
