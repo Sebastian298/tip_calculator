@@ -16,6 +16,7 @@ import type { MenuItem, OrderItem } from "../types"
     }
 
     return{
+        order,
         addItem
     }
  }
