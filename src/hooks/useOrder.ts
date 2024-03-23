@@ -15,8 +15,22 @@ import type { MenuItem, OrderItem } from "../types"
         setOrder([...order,{...item,quantity:1}])
     }
 
+    const removeItem = (id:MenuItem['id']) =>{
+        const updatedOrder = order.reduce((acc,orderItem) =>{
+            if(orderItem.id === id){
+                if(orderItem.quantity === 1){
+                    return acc;
+                }
+                return [...acc,{...orderItem,quantity:orderItem.quantity-1}]
+            }
+            return [...acc,orderItem]
+        },[] as OrderItem[]);
+        setOrder(updatedOrder);
+    };
+
     return{
         order,
-        addItem
+        addItem,
+        removeItem
     }
  }

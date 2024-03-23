@@ -3,7 +3,7 @@ import { OrderContents } from "./components/OrderContents";
 import { menuItems } from "./data/db";
 import { useOrder } from "./hooks/useOrder";
 export const App = () => {
-  const { addItem,order } = useOrder();
+  const { addItem,order,removeItem } = useOrder();
   return (
     <>
       <header className=" bg-teal-400 py-5">
@@ -23,6 +23,7 @@ export const App = () => {
         <div className="border border-dashed border-slade-300 p-5 rounded-lg space-y-10">
           <OrderContents 
            order={order}
+           removeItem={removeItem}
           />
         </div>
       </main>
