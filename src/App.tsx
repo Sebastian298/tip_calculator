@@ -5,7 +5,7 @@ import { TipPercentageForm } from "./components/TipPercentageForm";
 import { menuItems } from "./data/db";
 import { useOrder } from "./hooks/useOrder";
 export const App = () => {
-  const { addItem, order, removeItem,tip,setTip } = useOrder();
+  const { addItem, order, removeItem, tip, setTip, placeOrder } = useOrder();
   return (
     <>
       <header className=" bg-teal-400 py-5">
@@ -23,14 +23,13 @@ export const App = () => {
           </div>
         </div>
         <div className="border border-dashed border-slade-300 p-5 rounded-lg space-y-10">
-          <OrderContents order={order} removeItem={removeItem} />
-          <TipPercentageForm 
-          setTip={setTip}
-          />
-          <OrderTotal 
-          order={order}
-          tip={tip}
-          />
+          {order.length > 0 ? (
+            <>
+              <OrderContents order={order} removeItem={removeItem} />
+              <TipPercentageForm setTip={setTip} tip={tip} />
+              <OrderTotal order={order} tip={tip} placeOrder={placeOrder} />
+            </>
+          ) : (<p className="text-center"> The order is empty</p>)}
         </div>
       </main>
     </>
